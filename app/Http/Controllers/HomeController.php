@@ -15,9 +15,8 @@ class HomeController extends Controller
     public function redirect()
     {
         $user_type = Auth()->user()->userType;
-
         if($user_type == '1') {
-            return view('admin.home');
+            return view('admin.index');
         } else {
             return view('home.master');
         }
