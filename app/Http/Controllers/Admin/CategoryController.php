@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\category;
 use Illuminate\Http\Request;
-use MongoDB\Driver\Session;
-use PHPUnit\Event\Facade;
 
 
 class CategoryController extends Controller

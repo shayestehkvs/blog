@@ -81,6 +81,14 @@
                 </div>
             </li>
             <li class="nav-item menu-items">
+                <a class="nav-link" href="{{ route('all-users') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-group"></i>
+              </span>
+                    <span class="menu-title">Users</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
                 <a class="nav-link" href="{{ route('all-categories') }}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>

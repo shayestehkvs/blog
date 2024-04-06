@@ -12,13 +12,13 @@ class HomeController extends Controller
     {
         return view('home.master');
     }
-    public function redirect()
-    {
-        $user_type = Auth()->user()->userType;
-        if($user_type == '1') {
-            return view('admin.index');
-        } else {
-            return view('home.master');
-        }
-    }
+//    public function redirect()
+//    {
+//        $user_type = Auth()->user()->userType;
+//        if($user_type == '1') {
+//            return view('admin.index');
+//        } else {
+//            return view('home.master');
+//        }
+//    }
 }

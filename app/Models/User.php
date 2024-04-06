@@ -22,6 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'userType',
+        'is_super_Admin',
+        'is_staff',
     ];
 
     /**
@@ -43,4 +45,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function isSuperUser()
+    {
+        return $this->is_superuser;
+    }
+
+    public function isStaff()
+    {
+        return $this->is_staff;
+    }
 }
