@@ -21,25 +21,31 @@ class CategoryController extends Controller
     }
     public function storeCategory(Request $request)
     {
+        $request->validate([
+            'categoryName' => ['required', 'string', 'max:255']
+        ]);
         $category = new Category();
         $category->categoryName = $request->categoryName;
         $category->save();
         session()->flash('statuscode', 'success');
-        return redirect('all-categories')->with('status', 'Data saved');
+        return redirect(route('all-categories'))->with('status', 'Data saved');
     }
     public function editCategory($id)
     {
         $category = Category::find($id);
-        return view('admin.categories.edit-category')->with('category', $category);
+        return view(route('admin.categories.edit-category'))->with('category', $category);
     }
 
     public function updateCategory(Request $request, $id)
     {
+        $request->validate([
+            'categoryName' => ['required', 'string', 'max:255']
+        ]);
         $category = Category::find($id);
         $category->categoryName = $request->categoryName;
         $category->update();
         Session()->flash('statusCode', 'success');
-        return redirect('all-categories')->with('status', 'Data updated');
+        return redirect(route('all-categories'))->with('status', 'Data updated');
     }
 
     public function deleteCategory($id)

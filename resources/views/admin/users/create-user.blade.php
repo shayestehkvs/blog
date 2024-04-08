@@ -1,10 +1,29 @@
 @component('admin.layout.content')
+    @section('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" ></script>
+        <script>
+            $('#cuf').validate({
+                rules: {
+                    name : "required",
+                    email : "required",
+                    password: {
+                        minlength : 8
+                    },
+                    password_confirmation : {
+                        minlength : 8,
+                        equalTo : '#password'
+                    }
+                }
+            })
+
+        </script>
+    @endsection
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 @include('admin.layout.errors')
                 <h4 class="card-title">Create user</h4>
-                <form class="form-inline" method="post" action="{{ route('store-user') }}">
+                <form id="cuf" class="form-inline" method="post" action="{{ route('store-user') }}">
                     @csrf
                     <label class="sr-only" for="name">User Name</label>
                     <input type="text" id="name" name="name" class="form-control mb-2 mr-sm-2" style="background-color: white !important; color: #0a0a0a !important;" placeholder="Name">

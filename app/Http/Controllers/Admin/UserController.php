@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\user;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -33,15 +34,7 @@ class UserController extends Controller
             $user->markEmailAsVerified();
         }
         return redirect(route('all-users'))->with('status', 'Data saved');
-//        $user = new User();
-//        $user->name = $request->name;
-//        $user->email = $request->email;
-//        $user->phone = $request->phone;
-//        $user->password = $request->password ;
-//        $user->address = $request->address ;
-//        $user->save();
-//        session()->flash('statuscode', 'success');
-//        return redirect('all-categories')->with('status', 'Data saved');
+
     }
     public function editUser($id)
     {
@@ -52,10 +45,25 @@ class UserController extends Controller
     public function updateUser(Request $request, $id)
     {
         $user = User::find($id);
-        $user->name = $request->name;
-        $user->update();
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'phone' => ['string','max:255'],
+            'address' => ['string', 'max:255'],
+        ]);
+
+        if ( !is_null($request->password)) {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            $data['password'] = $request->password;
+        }
+        $user->update($data);
+        if($request->has('verify')) {
+            $user->markEmailAsVerified();
+        }
         Session()->flash('statusCode', 'success');
-        return redirect('all-users')->with('status', 'Data updated');
+        return redirect(route('all-users'))->with('status', 'Data saved');
     }
 
     public function deleteUser($id)

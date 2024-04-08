@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'userType',
+        'phone',
+        'addreaa',
         'is_super_Admin',
         'is_staff',
     ];
@@ -54,5 +55,10 @@ class User extends Authenticatable
     public function isStaff()
     {
         return $this->is_staff;
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 }

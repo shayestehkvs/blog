@@ -28,7 +28,7 @@
 
                             $.ajax({
                                 type:"DELETE",
-                                url:'/delete-category/'+ delete_id,
+                                url:'/admin/delete-category/'+ delete_id,
                                 data : data,
                                 success : function (response) {
                                     swal(response.status, {

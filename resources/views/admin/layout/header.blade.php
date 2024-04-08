@@ -98,7 +98,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="admin/assets/images/faces/face3.jpg" alt="image"
+                            <img src="{{ asset('admin/assets/images/faces/face3.jpg') }}" alt="image"
                                  class="rounded-circle profile-pic">
                         </div>
                         <div class="preview-item-content">
@@ -163,7 +163,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                     <div class="navbar-profile">
-                        <img class="img-xs rounded-circle" src="admin/assets/images/faces/face15.jpg" alt="">
+
+                        <img class="img-xs rounded-circle" src="{{ asset('admin/assets/images/faces/face15.jpg') }}" alt="">
                         <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                     </div>
