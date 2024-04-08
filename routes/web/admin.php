@@ -18,7 +18,7 @@ Route::delete('/delete-category/{id}', [CategoryController::class, 'deleteCatego
 Route::get('/all-users', [UserController::class, 'allUser'])->name('all-users');
 Route::get('create-user', [UserController::class, 'createUser'])->name('create-user');
 Route::post('store-user', [UserController::class, 'storeUser'])->name('store-user');
-Route::get('user-edit/{id}', [UserController::class, 'editUser'])->name('edit-user');
-Route::put('user-update/{id}', [UserController::class, 'updateUser'])->name('update-user');
+Route::get('edit-user/{id}', [UserController::class, 'editUser'])->name('edit-user');
+Route::put('update-user/{id}', [UserController::class, 'updateUser'])->name('update-user');
 Route::delete('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('delete-user');
 
