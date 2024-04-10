@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('dashboard', [AdminController::class, 'index']);
+Route::get('dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
 
 Route::get('all-categories', [CategoryController::class, 'allCategories'])->name('all-categories');
 Route::get('create-category', [CategoryController::class, 'createCategory'])->name('create-category');
@@ -22,3 +24,18 @@ Route::get('edit-user/{id}', [UserController::class, 'editUser'])->name('edit-us
 Route::put('update-user/{id}', [UserController::class, 'updateUser'])->name('update-user');
 Route::delete('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('delete-user');
 
+//permissions managment
+Route::get('/all-permissions', [PermissionController::class, 'allPermission'])->name('all-permissions');
+Route::get('create-permissions', [PermissionController::class, 'createPermission'])->name('create-permission');
+Route::post('store-permissions', [PermissionController::class, 'storePermission'])->name('store-permission');
+Route::get('edit-permissions/{id}', [PermissionController::class, 'editPermission'])->name('edit-permission');
+Route::put('update-permissions/{id}', [PermissionController::class, 'updatePermission'])->name('update-permission');
+Route::delete('/delete-permission/{id}', [PermissionController::class, 'deletePermission'])->name('delete-permission');
+
+//roles managment
+Route::get('/all-roles', [RoleController::class, 'allRole'])->name('all-roles');
+Route::get('create-roles', [RoleController::class, 'createRole'])->name('create-role');
+Route::post('store-roles', [RoleController::class, 'storeRole'])->name('store-role');
+Route::get('edit-roles/{id}', [RoleController::class, 'editRole'])->name('edit-role');
+Route::put('update-roles/{id}', [RoleController::class, 'updateRole'])->name('update-role');
+Route::delete('/delete-roles/{id}', [RoleController::class, 'deleteRole'])->name('delete-role');
