@@ -1,6 +1,4 @@
-
 @component('admin.layout.content')
-
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
@@ -64,6 +62,7 @@
                         </thead>
                         <tbody>
                         @foreach($permissions as $permission)
+
                             <tr>
                                 <input type="hidden" class="delete_val" value="{{$permission->id}}">
                                 <td> {{$permission->id}} </td>
@@ -81,4 +80,3 @@
         </div>
     </div>
 @endcomponent
-

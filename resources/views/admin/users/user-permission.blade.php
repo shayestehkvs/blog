@@ -12,6 +12,9 @@
                 $('#permission').select2({
                     'placeholder' : 'please select some permission'
                 });
+                $('#role').select2({
+                    'placeholder' : 'please select some permission'
+                });
             });
             $('#cpf').validate({
                 rules: {
@@ -24,21 +27,25 @@
 
         </script>
     @endsection
+
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 @include('admin.layout.errors')
-                <h4 class="card-title">Create role</h4>
-                <form id="cpf" class="form-inline" method="post" action="{{ route('store-role') }}">
+                <h4 class="card-title">User Permission and role</h4>
+                <form id="cpf" class="form-inline" method="post" action="{{ route('user.permissions.store', $user->id) }}">
                     @csrf
-                    <label class="sr-only" for="name">Role name</label>
-                    <input type="text" id="name" name="name" class="form-control mb-2 mr-sm-2" style="background-color: white !important; color: #0a0a0a !important;" placeholder="Permission name">
-                    <label class="sr-only" for="label">Role label</label>
-                    <input type="text" id="label" name="label" class="form-control mb-2 mr-sm-2" style="background-color: white !important; color: #0a0a0a !important;" placeholder="Permission name">
+
+                    <label class="sr-only" for="role">Role label</label>
+                    <select name="roles[]" id="role" class="form-control" multiple style="background-color: white !important; color: #0a0a0a !important;" placeholder="Role">
+                        @foreach($roles as $role)
+                            <option value="{{ $role->id }}" {{ in_array($role->id, $user->roles->pluck('id')->toArray()) ? 'selected' : '' }} >{{$role->name}} - {{ $role->label }}</option>
+                        @endforeach
+                    </select>
                     <label class="sr-only" for="permissions">Role label</label>
                     <select name="permissions[]" id="permission" class="form-control" multiple style="background-color: white !important; color: #0a0a0a !important;" placeholder="Permission name">
                         @foreach($permissions as $permission)
-                            <option value="{{ $permission->id }}">{{$permission->name}} - {{ $permission->label }}</option>
+                            <option value="{{ $permission->id }}" {{ in_array($permission->id, $role->permissions->pluck('id')->toArray()) ? 'selected' : '' }} >{{$permission->name}} - {{ $permission->label }}</option>
                         @endforeach
                     </select>
                     <br>

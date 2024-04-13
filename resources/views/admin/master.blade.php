@@ -12,6 +12,7 @@
             display: block !important;
         }
     </style>
+    @yield('styles')
     @include('admin.layout.css')
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}"/>
 </head>

@@ -9,6 +9,13 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:show-users')->only(['allUser']);
+        $this->middleware('can:create-users')->only(['createUser', 'storeUser']);
+        $this->middleware('can:edit-users')->only(['editUser', 'updateUser']);
+        $this->middleware('can:delete-users')->only(['deleteUser']);
+    }
     public function allUser()
     {
         $users = User::all();

@@ -1,19 +1,29 @@
 
 @component('admin.layout.content')
-    @section('scripts')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" ></script>
-        <script>
-            $('#cpf').validate({
-                rules: {
-                    name : "required"
-                },
-                messages: {
-                    name: "Please enter role name"
-                }
-            })
+@section('styles')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-        </script>
-    @endsection
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" ></script>
+    <script>
+        $(document).ready(function() {
+            $('#permission').select2({
+                'placeholder' : 'please select some permission'
+            });
+        });
+        $('#cpf').validate({
+            rules: {
+                name : "required"
+            },
+            messages: {
+                name: "Please enter role name"
+            }
+        })
+
+    </script>
+@endsection
 
     <div class="col-12 grid-margin stretch-card">
         <div class="card">

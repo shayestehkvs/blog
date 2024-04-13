@@ -49,8 +49,9 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title">user List</h4>
-                    <a class="btn btn-sm btn-success" href="{{route('create-user')}}">+ Create User</a>
-
+                    @can('create-user')
+                        <a class="btn btn-sm btn-success" href="{{route('create-user')}}">+ Create User</a>
+                    @endcan
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -81,8 +82,18 @@
 
                                     @endif
                                 </td>
-                                <td> <a href="{{ route('edit-user', $user->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                    <button type="submit" class="btn btn-sm btn-danger deletebtn">Delete</button>
+                                <td>
+                                    @can('edit-user')
+                                        <a href="{{ route('edit-user', $user->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                    @endcan
+                                    @can('delete-user')
+                                        <button type="submit" class="btn btn-sm btn-danger deletebtn">Delete</button>
+                                    @endcan
+                                    @if($user->isStaff())
+                                        @can('staff-user-permissions')
+                                            <a href="{{ route('user.permissions', $user->id) }}" class="btn btn-sm btn-info">Access</a>
+                                        @endcan
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

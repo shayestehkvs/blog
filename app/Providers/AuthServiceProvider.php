@@ -4,6 +4,7 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use App\Models\Permission;
+use http\Client\Curl\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -24,8 +25,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
+
         foreach (Permission::all() as $permission) {
-            Gate::define($permission->name, function ($user) {
+            Gate::before(function ($user) {
+                if ($user->isSuperUser()) return true;
+            });
+            Gate::define($permission->name, function ($user) use ($permission) {
                return $user->hasPermission($permission);
             });
         }

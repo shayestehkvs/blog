@@ -80,14 +80,16 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="{{ route('all-users') }}">
+            @can('show-users')
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="{{ route('all-users') }}">
               <span class="menu-icon">
                 <i class="mdi mdi-account-group"></i>
               </span>
-                    <span class="menu-title">Users</span>
-                </a>
-            </li>
+                        <span class="menu-title">Users</span>
+                    </a>
+                </li>
+            @endcan
             <li class="nav-item menu-items">
                 <a class="nav-link" href="{{ route('all-permissions') }}">
               <span class="menu-icon">

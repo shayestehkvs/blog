@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserPermissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
@@ -39,3 +40,7 @@ Route::post('store-roles', [RoleController::class, 'storeRole'])->name('store-ro
 Route::get('edit-roles/{id}', [RoleController::class, 'editRole'])->name('edit-role');
 Route::put('update-roles/{id}', [RoleController::class, 'updateRole'])->name('update-role');
 Route::delete('/delete-roles/{id}', [RoleController::class, 'deleteRole'])->name('delete-role');
+
+//permission and roles user
+Route::get('/users/{id}/permissions', [UserPermissionController::class, 'createUserPermission'])->name('user.permissions')->middleware('can:staff-user-permissions');
+Route::post('/users/{id}/permissions', [UserPermissionController::class, 'storeUserPermission'])->name('user.permissions.store')->middleware('can:staff-user-permissions');
