@@ -41,5 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
+Route::get('product-detail/{id}', [HomeController::class, 'productDetail'])->name('product-detail');
+Route::post('add-card/{id}', [HomeController::class, 'addToCard'])->name('add-card');
+Route::get('show-cart', [HomeController::class, 'showCart'])->name('show-cart');
+Route::delete('/remove-cart-item/{id}', [HomeController::class, 'removeItemFromCart'])->name('remove-cart-item');
 
 require __DIR__ . '/../auth.php';

@@ -107,6 +107,14 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
+                <a class="nav-link" href="{{ route('all-products') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-group"></i>
+              </span>
+                    <span class="menu-title">Products</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
                 <a class="nav-link" href="{{ route('all-categories') }}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>

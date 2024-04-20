@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserPermissionController;
@@ -13,7 +14,7 @@ Route::get('dashboard', [AdminController::class, 'index'])->name('admin-dashboar
 Route::get('all-categories', [CategoryController::class, 'allCategories'])->name('all-categories');
 Route::get('create-category', [CategoryController::class, 'createCategory'])->name('create-category');
 Route::post('store-category', [CategoryController::class, 'storeCategory'])->name('store-category');
-Route::get('category-edit/{id}', [CategoryController::class, 'editCategory'])->name('edit-category');
+Route::get('edit-category/{id}', [CategoryController::class, 'editCategory'])->name('edit-category');
 Route::put('category-update/{id}', [CategoryController::class, 'updateCategory'])->name('update-category');
 Route::delete('/delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('delete-category');
 
@@ -44,3 +45,11 @@ Route::delete('/delete-roles/{id}', [RoleController::class, 'deleteRole'])->name
 //permission and roles user
 Route::get('/users/{id}/permissions', [UserPermissionController::class, 'createUserPermission'])->name('user.permissions')->middleware('can:staff-user-permissions');
 Route::post('/users/{id}/permissions', [UserPermissionController::class, 'storeUserPermission'])->name('user.permissions.store')->middleware('can:staff-user-permissions');
+
+//products managment route
+Route::get('all-products', [ProductController::class, 'allProduct'])->name('all-products');
+Route::get('create-product', [ProductController::class, 'createProduct'])->name('create-product');
+Route::post('store-product', [ProductController::class, 'storeProduct'])->name('store-product');
+Route::get('edit-product/{id}', [ProductController::class, 'editProduct'])->name('edit-product');
+Route::put('update-product/{id}', [ProductController::class, 'updateProduct'])->name('update-product');
+Route::delete('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('delete-product');

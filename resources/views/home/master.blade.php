@@ -23,33 +23,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-<div class="hero_area">
-    <!-- header section strats -->
-    @include('home.layouts.header')
-    <!-- end header section -->
-    <!-- slider section -->
-    @include('home.layouts.sidebar')
-    <!-- end slider section -->
-</div>
-<!-- why section -->
-
-<!-- end why section -->
-@include('home.why')
-<!-- arrival section -->
-@include('home.arrival')
-<!-- end arrival section -->
-
-<!-- product section -->
-@include('home.product')
-
-<!-- end product section -->
-
-<!-- subscribe section -->
-@include('home.subscribe')
-<!-- end subscribe section -->
-<!-- client section -->
-@include('home.client')
-<!-- end client section -->
+<!-- header section strats -->
+@include('home.layouts.header')
+<!-- end header section -->
+@yield('content')
 <!-- footer start -->
 @include('home.layouts.footer')
 <!-- footer end -->
@@ -62,5 +39,18 @@
 <script src="{{ asset('home/js/bootstrap.js') }}"></script>
 <!-- custom js -->
 <script src="{{ asset('home/js/custom.js') }}"></script>
+<script src="{{ asset('admin/assets/js/sweet-alert.js')}}"></script>
+<script>
+    @if(session('status'))
+    {{--swal("{{session('status')}}", "{{session('statuscode')}}");--}}
+    swal({
+        title: "{{session('status')}}",
+        // text: "You clicked the button!",
+        icon: "{{session('statuscode')}}",
+        button: "OK!",
+    });
+    @endif
+</script>
+@yield('scripts')
 </body>
 </html>
