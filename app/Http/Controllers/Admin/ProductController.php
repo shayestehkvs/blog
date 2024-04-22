@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Repositories\ProductRepo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -12,9 +13,14 @@ use Illuminate\Validation\Validator;
 
 class ProductController extends Controller
 {
+    public $product_repo;
+    public function __constract(Product $product_repo)
+    {
+        $this->product_repo = $product_repo;
+    }
     public function allProduct()
     {
-        $products = Product::all();
+        $products = $this->product_repo->getAll();
         return view('admin.products.all-products')->with('products', $products);
     }
 
@@ -54,7 +60,7 @@ class ProductController extends Controller
     }
     public function editProduct($id)
     {
-        $product = Product::find($id);
+        $product = $this->product_repo->findById($id);
         $categories = Category::all();
         return view('admin.products.edit-product')->with('product', $product)->with('categories', $categories);
     }
@@ -99,6 +105,6 @@ class ProductController extends Controller
             File::delete($file_path);
             $product->delete();
         }
-        return response()->json(['status'=> 'Product deleted successfully']);
+        return response()->json(['status'=> 'ProductRepo deleted successfully']);
     }
 }

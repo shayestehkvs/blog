@@ -163,7 +163,7 @@
         lines: {
           show: true
         },
-        label: 'Product A',
+        label: 'ProductRepo A',
         stack: true,
         color: '#F36368',
       },
@@ -172,7 +172,7 @@
         lines: {
           show: true
         },
-        label: 'Product B',
+        label: 'ProductRepo B',
         stack: true,
         color: '#FABA66'
       },
@@ -181,7 +181,7 @@
         lines: {
           show: true
         },
-        label: 'Product C',
+        label: 'ProductRepo C',
         stack: true,
         color: '#68B3C8'
       }
@@ -316,7 +316,7 @@
         show: true,
         fill: 0.6
       },
-      label: 'Product 1',
+      label: 'ProductRepo 1',
       stack: true,
       color: '#76C1FA'
     }], options);

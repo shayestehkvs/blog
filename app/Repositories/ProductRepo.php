@@ -4,11 +4,15 @@ namespace App\Repositories;
 
 use App\Models\Product;
 
-class ProductRepo
+class ProductRepo implements IProductRepo
 {
     public function getAll()
     {
-        return Product::query()->get();
+        return ProductRepo::query()->get();
+    }
+    public function getById($id)
+    {
+        return ProductRepo::find($id);
     }
 
 }
