@@ -31,7 +31,17 @@
                             </h6>
                             @endif
                         </p>
-                        <a href="{{ route('show-cart') }}">Add to cart</a>
+                            <form action="{{ route('add-card', $product->id) }}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" min="1" name="quantity" value="1" width="100px">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="submit" value="Add to cart" class="option-2">
+                                    </div>
+                                </div>
+                            </form>
                     </div>
                 </div>
             </div>

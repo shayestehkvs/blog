@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 Route::get('product-detail/{id}', [HomeController::class, 'productDetail'])->name('product-detail');
 Route::post('add-card/{id}', [HomeController::class, 'addToCard'])->name('add-card');
 Route::get('show-cart', [HomeController::class, 'showCart'])->name('show-cart');
+Route::get('cash-order', [HomeController::class, 'cashOrder'])->name('cash-order');
 Route::delete('/remove-cart-item/{id}', [HomeController::class, 'removeItemFromCart'])->name('remove-cart-item');
 
 require __DIR__ . '/../auth.php';

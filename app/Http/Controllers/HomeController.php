@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models;
@@ -70,6 +71,42 @@ class HomeController extends Controller
         $cart_item = Cart::find($id);
         $cart_item->delete();
         return response()->json(['status'=> 'Cart Item removed']);
+
+    }
+    public function cashOrder()
+    {
+        if (Auth::id()) {
+            $id = Auth::user()->id;
+            $cart_info = Cart::where('user_id', $id)->get();
+
+            foreach ($cart_info as $data) {
+                $order = new Order();
+                $order->name = $data->name;
+                $order->email = $data->email;
+                $order->phone = $data->phone;
+                $order->address = $data->address;
+                $order->user_id = $data->user_id;
+
+                $order->product_title = $data->product_title;
+                $order->price = $data->price;
+                $order->quantity = $data->quantity;
+                $order->image = $data->image;
+                $order->product_id = $data->product_id;
+
+                $order->payment_status = 'Cash on delivery';
+                $order->delivery_status = 'processing';
+
+                $order->save();
+
+                $cart_id = $data->id;
+                $cart = Cart::find($cart_id);
+                $cart->delete();
+            }
+            Session()->flash('statusCode', 'success');
+            return redirect(route('show-cart'))->with('status', 'We have received your order.');
+        } else {
+            return redirect()->back();
+        }
 
     }
 

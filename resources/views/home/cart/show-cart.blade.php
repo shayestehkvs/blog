@@ -45,7 +45,7 @@
             });
         </script>
     @endsection
-    <section style="height: 100px; margin-top: 70px; margin-bottom: 100px;">
+    <section style="margin-top: 70px; margin-bottom: 100px;">
         <div class="container">
             <div class="container">
                 <h1>Product list</h1>
@@ -81,8 +81,10 @@
                 <div>
                     <h1 class="text-center" style="font-size: 20px; font-weight: 500;">Total Price is ${{ $total_price }}</h1>
                 </div>
-                <div>
-                    <h1 class="text-center" style="font-size: 20px; font-weight: 500;">Total Price is ${{ $total_price }}</h1>
+                <div class="text-center mt-4">
+                    <h1 class="text-center mt-4" style="font-size: 20px; font-weight: 500;">Proceed to order</h1>
+                    <a href="{{ route('cash-order') }}" class="btn btn-danger">Cash On Delivery</a>
+                    <a href="#" class="btn btn-danger">Pay Using Cart</a>
                 </div>
             </div>
         </div>
